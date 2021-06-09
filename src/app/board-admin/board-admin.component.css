@@ -1,0 +1,26 @@
+.list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.list .img {
+  width: 3em;
+  height: 3em;
+  border: radius 50;
+}
+
+.list .name {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.list .description {
+  font-size: 0.8em;
+  font-weight: 300;
+}
+/*# sourceMappingURL=board-admin.component.css.map */

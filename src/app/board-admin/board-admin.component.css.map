@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACF,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;CAczB;;AAhBD,AAGI,KAHC,CAGD,IAAI,CAAC;EACD,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,GAAG;EACX,MAAM,EAAE,SAAS;CACpB;;AAPL,AAQI,KARC,CAQD,KAAK,CAAC;EACF,SAAS,EAAE,GAAG;EACd,WAAW,EAAE,GAAG;CACnB;;AAXL,AAYI,KAZC,CAYD,YAAY,CAAC;EACT,SAAS,EAAE,KAAK;EAChB,WAAW,EAAE,GAAG;CACnB",
+    "sources": [
+        "board-admin.component.scss"
+    ],
+    "names": [],
+    "file": "board-admin.component.css"
+}

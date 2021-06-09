@@ -1,0 +1,126 @@
+<div class="page-header" filter-color="orange">
+    <div class="page-header-image" style="background-image:url(assets/img/pistevoiture.jpg)"></div>
+    <div class="container">
+        <div class="col-md-4 content-center">
+            <div class="card card-login card-plain">
+                <div class="header header-primary text-center"></div>
+                <!-- <p style="color: rgb(168, 65, 24);font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; size:50px;">{{ content }}</p>-->
+                <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                        <ngb-tabset [justify]="'center'" class="text-center">
+                            <!--uploadbutton-->
+                            <ngb-tab>
+                                <ng-template ngbTabTitle>
+                                    <i class="now-ui-icons files_single-copy-04"></i> Envoyer les dossiers medical
+                                </ng-template>
+                                <ng-template ngbTabContent>
+                                    <div class="nav-tabs-navigation">
+                                        <div class="nav-tabs-wrapper">
+                                            <nav>
+                                            
+                                                <button class="btn btn-primary btn-round btn-lg "href="/fileupload" routerLink="/fileupload">
+                                                    Envoyer
+                                                  </button>
+                                                </nav>
+                                            </div>
+                                            </div>
+                                         </ng-template>
+                                              </ngb-tab>
+                                                <!-- vhjgkhgu-->
+                            <ngb-tab>
+                                <ng-template ngbTabTitle>
+                                    <i class="now-ui-icons files_single-copy-04"></i> Demande Administrative
+                                </ng-template>
+                                <ng-template ngbTabContent>
+                                    <div class="nav-tabs-navigation">
+                                        <div class="nav-tabs-wrapper">
+                                            <ngb-tabset [justify]="'center'" class="text-center">
+                                                <ngb-tab>
+                                                    <ng-template ngbTabTitle>
+                                                        <i class="fas fa-file-alt"></i> Demande de duplicata de Carte grise
+                                                    </ng-template>
+                                                    <ng-template ngbTabContent>
+                                                        <h5>
+                                                            <div class="panel panel-primary">
+                                                                <div class="panel-heading">
+                                                                    <h2 style="color:green ;">Mes Demandes Envoyés </h2>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <table class="table table-striped">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th style="color:green  ;">id</th>
+                                                                                <th style="color:green  ;">Matricule</th>
+                                                                                <th style="color:green  ;">date perte</th>
+                                                                                <th style="color:green  ;">etat</th>
+                                                                                <th style="color:green;"> Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr *ngFor="let demande of demande | async|slice:(page-1) * pagesize: (page-1)*pagesize+pagesize">
+                                                                                <td style="color:green  ;"> {{demande.id}}</td>
+                                                                                <td style="color:black ;"> {{ demande.matricule}}</td>
+                                                                                <td style="color:black ;"> {{ demande.date_perte |date : "dd.MM.y" }}</td>
+                                                                                <td style="color:black;"> {{ demande.etat}}</td>
+                                                                                <td> <button (click)="deletedemande(demande.id)" class="btn btn-info" style="margin-left: 10px">Supprimer</button> </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <ngb-pagination [pageSize]="4" [collectionSize]="70" [(page)]="page" aria-label="" style="background-color: blue;">
+                                                                    </ngb-pagination>
+                                                                </div>
+                                                            </div>
+                                                        </h5>
+                                                    </ng-template>
+                                                </ngb-tab>
+                                                <ngb-tab>
+                                                    <ng-template ngbTabTitle>
+                                                        <i class="fas fa-file-contract"></i> Demande de duplicata permis
+                                                    </ng-template>
+                                                    <ng-template ngbTabContent>
+                                                        <h5>
+                                                            <div class="panel panel-primary">
+                                                                <div class="panel-heading">
+                                                                    <h2 style="color:green ;">Mes Demandes Envoyés </h2>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <table class="table table-striped">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th style="color:green  ;">id</th>
+                                                                                <th style="color:green  ;">Matricule</th>
+                                                                                <th style="color:green  ;">date perte</th>
+                                                                                <th style="color:green  ;">etat</th>
+                                                                                <th style="color:green  ;">Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr *ngFor="let demf of demf | async|slice:(page-1) * pagesize: (page-1)*pagesize+pagesize">
+                                                                                <td style="color:green  ;"> {{demf.id}}</td>
+                                                                                <td style="color:black ;"> {{ demf.matricule}}</td>
+                                                                                <td style="color:black ;"> {{demf.date_perte |date : "dd.MM.y" }}</td>
+                                                                                <td style="color:black;"> {{ demf.etat}}</td>
+                                                                                <td> <button (click)="deletedem(demf.id)" class="btn btn-info" style="margin-left: 10px">Supprimer</button></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <ngb-pagination [pageSize]="4" [collectionSize]="70" [(page)]="page" aria-label="" style="background-color: blue;">
+                                                                    </ngb-pagination>
+                                                                </div>
+                                                            </div>
+                                                        </h5>
+                                                    </ng-template>
+                                                </ngb-tab>
+                                            </ngb-tabset>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </ngb-tab>
+                            
+                        </ngb-tabset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

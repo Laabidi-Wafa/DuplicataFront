@@ -1,0 +1,47 @@
+<div class="page-header" filter-color="orange">
+  <div class="page-header-image" style="background-image:url(assets/img/pistevoiture.jpg)"></div>
+  <div class="container">
+  <div class="col-md-4 content-center">
+  <div class="card card-login card-plain">
+    <div class="container" style="width:800px">
+      <div class="card">
+    <div style="margin: 20px">
+      <h4>{{ title }}</h4>
+    </div>
+    <div *ngIf="currentFile" class="progress">
+      <div
+        class="progress-bar progress-bar-info progress-bar-striped"
+        role="progressbar"
+        attr.aria-valuenow="{{ progress }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [ngStyle]="{ width: progress + '%' }"
+      >
+        {{ progress }}%
+      </div>
+    </div>
+    
+    <label class="btn btn-default">
+      <input type="file" (change)="selectFile($event)" />
+    </label>
+    
+    <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">
+      Upload
+    </button>
+     
+        <div class="alert alert-light" role="alert">{{ message }}</div>
+     <h1 style="color: brown;"> <div class="card-header">la liste des documents</div></h1>
+      <ul
+        class="list-group list-group-flush"
+        *ngFor="let file of fileInfos | async"
+      >
+        <li class="list-group-item">
+          <a href="{{ file.url }}">{{ file.name }}</a>
+        </li>
+      </ul>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+</div>

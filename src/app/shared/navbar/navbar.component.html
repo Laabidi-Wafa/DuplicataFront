@@ -1,0 +1,99 @@
+<nav class="navbar navbar-expand-lg bg-primarynavbar fixed-top navbar-transparent" color-on-scroll="300">
+    <div class="container">
+        <div style="margin-top:1%;" class="card1">
+        </div>
+        <div class="dropdown button-dropdown">
+            <div ngbDropdown>
+                <a class="dropdown-toggle" ngbDropdownToggle>
+                    <span class="button-bar"></span>
+                    <span class="button-bar"></span>
+                    <span class="button-bar"> </span>
+                </a>
+                <div ngbDropdownMenu>
+                    <a class="dropdown-header">Dropdown header</a>                
+                    <li class="nav-item" *ngIf="showProprietaireBoard">
+                        <a class="nav-link" *ngIf="isLoggedIn" routerLink="pro">
+                            <i class="now-ui-icons users_single-02"></i>
+                            <p> Agence technique des transport terrestres </p>
+                        </a>
+    
+                    </li>
+                    <li class="nav-item" *ngIf="showCitoyenBoard">
+                        <a class="nav-link" *ngIf="isLoggedIn" routerLink="Citoyen">
+                            <i class="now-ui-icons users_single-02"></i>
+                            <p> Citoyen </p>
+                        </a>
+                    </li>
+                    <a class="dropdown-item" (click)="detailprofile(currentUser.id)">  <i class="fa fa-bars fa-lg"></i> Detail Profil </a>
+                    <a class="dropdown-item" (click)="envoyerdemande()" *ngIf="showCitoyenBoard"> <i class="fas fa-file-medical "></i> Créer une demande de duplicata </a>
+                    <a class="dropdown-item"routerLink="admin/cp1" *ngIf="showAdminBoard"> <i class="fa fa-user-plus fa-lg"></i>   Ajouter un Agent de garde National </a>
+                    <a class="dropdown-item" href="/pro/Agent" routerLink="pro/Agent" *ngIf="showAdminBoard"> <i class="fa fa-user-circle fa-lg"></i> Ajouter un Agent 3T </a>
+                    <hr/>
+                    <a class="dropdown-item" href="#contacts" *ngIf="!showProprietaireBoard"> <i class="fas fa-envelope fa-lg"></i>contacts </a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-translate">
+            <a class="navbar-brand" [routerLink]="['/vehicule']" placement="bottom" ngbTooltip="welcom in my app">
+                Véhicule
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" data-nav-image="/assets/img/logowinfoot.png" data-color="orange">
+            <ul class="navbar-nav ml-auto" routerLinkActive="active">
+                <li class="nav-item" *ngIf="showAdminBoard">
+                    <a class="nav-link" routerLink="admin" *ngIf="isLoggedIn">
+                        <i class="now-ui-icons users_single-02"></i>
+                        <p> Admin </p>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="showAgent3TBoard">
+                    <a class="nav-link" *ngIf="isLoggedIn" routerLink="Agent3t">
+                        <i class="now-ui-icons users_single-02"></i>
+                        <p> Agence technique des transport terrestres </p>
+                    </a>
+
+                </li>
+                <li class="nav-item" *ngIf="showCitoyenBoard">
+                    <a class="nav-link" *ngIf="isLoggedIn" routerLink="BoardCitoyen">
+                        <i class="now-ui-icons users_single-02"></i>
+                        <p> Citoyen </p>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="showAGENTNATIONALBoard">
+                    <a class="nav-link" *ngIf="isLoggedIn" routerLink="pro">
+                        <i class="now-ui-icons users_single-02"></i>
+                        <p> Agent de garde National </p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+                <li class="nav-item">
+                    <a class="now-ui-icons business_badge" class="nav-link" routerLink="examples/profile">
+                        <i class="now-ui-icons business_badge"></i>
+                        <p> Profil </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="logout()" *ngIf="!isLoggedOut" (click)="refresh()">
+                        <i class="now-ui-icons media-1_button-power"> </i>
+                        <p> Déconnecter</p>
+
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="login">
+                        <i class="now-ui-icons users_single-02"></i>
+                        <p>Se Connecter </p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

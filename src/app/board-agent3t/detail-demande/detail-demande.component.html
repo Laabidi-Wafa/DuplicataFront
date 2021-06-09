@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+    body {
+        position: relative;
+    }
+    
+    ul.nav-pills {
+        top: 20px;
+        position: fixed;
+    }
+    
+    .container1 {
+        max-height: 500px;
+        border: 1px solid #f0f0f0;
+    }
+</style>
+<div class="page-header" filter-color="orange">
+    <div class="page-header-image" style="background-image:url(assets/img/pistevoiture.jpg)"> </div>
+    <div class="container">
+        <div class="col-md-4 content-center">
+
+            <div class="header header-primary text-center">
+                <div class="card" style="width: 50rem; height:30rem;">
+                    <div class="card-header">
+                        <h2 class="modal-title" style="color:black ; " id="modal-basic-title">Demande Administrative</h2>
+                    </div>
+                    <div class="container1" style="overflow-y: auto;">
+
+                        <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div>
+                                        <label class="text-left" style="color:green ;" *ngIf="display === true"><b>Matricule: </b></label>
+                                        <h3 style="color:black ; "> {{demande.matricule}} </h3>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div>
+                                        <label class="text-left" style="color:green ;" *ngIf="display === true"><b>Date de perte: </b></label>
+                                        <h3 style="color:black ; "> {{ demande.date_perte |date: "yyy-mm-d"}} </h3>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div>
+                                        <label class="text-left" style="color:green ;" *ngIf="display === true"><b> etat: </b></label>
+                                        <h3 style="color:black ; "> {{demande.etat}}</h3>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="modal-footer">
+                                <button (click)="Etatvalider()" class="btn btn-primary btn-round btn-lg btn-block ui-1_check" style="width: 350px; display: block;
+                                                margin: auto;"> je veux valider votre demande</button><br>
+                            </div>
+                        </body>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+</div>

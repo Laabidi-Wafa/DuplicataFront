@@ -1,0 +1,61 @@
+<div class="page-header" filter-color="orange">
+    <div class="page-header-image" style="background-image:url(assets/img/pistevoiture.jpg)"></div>
+    <div class="container">
+        <div class="container" *ngIf="!isLoggedIn">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <!--table-striped-->
+                    <h2>La Liste D'utilisateur</h2>
+                </div>
+            
+                <div class="panel-body overflow-auto">
+                    <table class="table data-table table-striped table-fixed display">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th style="color:burlywood;">nom</th>
+                                <th style="color:burlywood;">prenom</th>
+                                <th style="color:burlywood;">Email</th>
+                                <th style="color:burlywood;">tel</th>
+                                <th style="color:burlywood;">Actions </th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="compteadmine">
+                            <tr *ngFor="let tableauAdmin of tableauAdmin  |slice:(page-1) * pagesize: (page-1)*pagesize+pagesize">
+
+                                <td style="color:cornsilk;">
+                                    <div class="list">
+                                        <img class="img" src="assets/img/logo.png" alt="photo">
+                                    </div>
+                                </td>
+                                <td style="color:white;">
+                                    <div class="name">{{tableauAdmin.username}}</div>
+                                </td>
+                                <td style="color:white;">
+                                    <div class="name"> {{tableauAdmin.prenom}} </div>
+                                </td>
+                                <td style="color:white;">
+                                    <div class="name">{{tableauAdmin.email}} </div>
+                                </td>
+                                <td style="color:white;">
+                                    <div class="name"> {{tableauAdmin.tel}} </div>
+                                </td>
+                                <td>
+                                    <button (click)="updateUtilisateur(tableauAdmin.id)" class="btn btn-info" style="margin-left: 10px">Modifier</button>
+                                    <button (click)="DetailsUser(tableauAdmin.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+                                    <button (click)="Deleteuser(tableauAdmin.id)" class="btn btn-info" style="margin-left: 10px">Supprimer</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ngb-pagination [pageSize]="6" [collectionSize]="24" [(page)]="page" aria-label="" style="background-color: blue;">
+                    </ngb-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

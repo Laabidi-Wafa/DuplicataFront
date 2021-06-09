@@ -1,0 +1,38 @@
+<div class="page-header" filter-color="orange">
+    <div class="page-header-image" style="background-image:url(assets/img/surface.jpg)"> </div>
+    <div class="container">
+        <div class="col-md-4 content-center">
+            <div class="card card-login card-plain">
+                <div class="header header-primary text-center">
+
+                    <h2>Profil {{user.username}} </h2>
+
+                    <hr/>
+                    <div *ngIf="user">
+                        <div>
+                            <label class="text-left"><b>Nom: </b></label>
+                            <div class="text-left"> {{user.username}}</div>
+                        </div>
+                        <div>
+                            <label class="text-left"><b>Prénom: </b></label>
+                            <div class="text-left">
+                                {{user.prenom}}</div>
+                        </div>
+                        <div>
+                            <label class="text-left"><b>Email: </b></label>
+                            <div class="text-left"> {{user.email}} </div>
+                        </div>
+                        <div>
+                            <label class="text-left"><b>Numero de télephone: </b></label>
+                            <div class="text-left">{{user.tel}}</div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <br>
+                    <button (click)="profilsdetail()" class="btn btn-primary btn-round btn-lg btn-block" style="width: 350px; display: block;
+                    margin: auto;">Back </button><br>
+                </div>
+
+            </div>
+        </div>

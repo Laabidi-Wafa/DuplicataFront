@@ -1,0 +1,105 @@
+<div class="page-header" filter-color="orange">
+    <div class="page-header-image" style="background-image:url(assets/img/pistevoiture.jpg)"></div>
+    <div class="container">
+        <div class="col-md-12 content-center">
+            <div class="card card-container">
+                <div class="header header-primary text-center">
+                    <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
+                    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="username" class="text-left" style="color: black;">Nom :</label>
+                                    <input type="text" class="form-control is-invalid" name="username" [(ngModel)]="form.username" [ngClass]="{ 'is-invalid': f.submitted && username.invalid }" required minlength="3" maxlength="20" #username="ngModel" />
+                                    <div class="invalid-tooltip" *ngIf="f.submitted && username.invalid">
+                                        <div *ngIf="username.errors.required">Nom d'utilisateur est nécessaire</div>
+                                        <div *ngIf="username.errors.minlength">
+                                            Le nom d'utilisateur doit contenir au moins 3 caractères
+                                        </div>
+                                        <div *ngIf="username.errors.maxlength">
+                                            Le nom d'utilisateur doit contenir au plus 20 caractères
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="prenom" class="text-left" style="color: black;">prenom :</label>
+                                    <input type="text" class="form-control is-invalid" name="prenom" [(ngModel)]="form.prenom" [ngClass]="{ 'is-invalid': f.submitted && prenom.invalid }" required minlength="3" maxlength="20" #prenom="ngModel" />
+                                    <div class="invalid-tooltip" *ngIf="f.submitted && prenom.invalid">
+                                        <div *ngIf="prenom.errors.required">Prénom d'utilisateur est nécessaire</div>
+                                        <div *ngIf="prenom.errors.minlength">
+                                            Le prénom d'utilisateur doit contenir au moins 3 caractères
+                                        </div>
+                                        <div *ngIf="prenom.errors.maxlength">
+                                            Le prénom d'utilisateur doit contenir au moins 20 caractères
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="email" class="text-left" style="color: black;">Email :</label>
+                                    <input type="email" class="form-control is-invalid" name="email" [(ngModel)]="form.email" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email #email="ngModel" />
+                                    <div class="invalid-tooltip" *ngIf="f.submitted && email.invalid">
+                                        <div *ngIf="email.errors.required">Ecrire votre email</div>
+                                        <div *ngIf="email.errors.email">
+                                            L'e-mail doit être une adresse e-mail valide
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="password" class="text-left" style="color: black;">Mot de passe:</label>
+                                    <input type="password" class="form-control is-invalid" name="password" [(ngModel)]="form.password" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="8" #password="ngModel" />
+                                    <div class="invalid-tooltip" *ngIf="f.submitted && password.invalid">
+                                        <div *ngIf="password.errors.required">Le mot passe est nécessaire</div>
+                                        <div *ngIf="password.errors.minlength">
+                                            Mot de passe doit être d'au moins 8 caractères
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="tel" class="text-left" style="color: black;">numero de telephone :</label>
+                                    <input type="tel" class="form-control is-invalid" name="tel" [(ngModel)]="form.tel" [ngClass]="{ 'is-invalid': f.submitted && tel.invalid }" required minlength="8" #tel="ngModel" />
+                                    <div class="invalid-tooltip" *ngIf="f.submitted && tel.invalid">
+                                        <div *ngIf="tel.errors.required"> créer votre numéro de télephone</div>
+                                        <div *ngIf="tel.errors.minlength">
+                                            votre numero de telephone doit contenir au moins 8 caractères
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row md-3">
+                            <div class="col">
+                                <script>
+                                    $(function() {
+                                        $('[data-toggle="tooltip"]').tooltip()
+                                    })
+                                </script>
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-round btn-lg btn-block" id="tooltip" title="Ajouter un compte propriétaire du terrain!!!" style="width: 350px; display: block;
+                                    margin: auto;">  S'inscrire </button>
+                                </div>
+
+                                <div class="alert alert-warning alert-dismissible fade show" style="position: fixed; top: 0; right: 0" *ngIf="f.submitted && isSignUpFailed">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button> L'inscription a échoué!<br />{{ errorMessage }}
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="alert alert-success" *ngIf="isSuccessful">
+                        Votre inscription est réussie!
+                    </div>
+                </div>
+            </div>

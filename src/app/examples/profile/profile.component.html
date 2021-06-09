@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<div class="wrapper">
+    <div class="page-header page-header-small" filter-color="orange">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/backbleu.jpg') ;">
+        </div>
+        <div class="container">
+            <div class="content-center">
+                <div class="photo-container">
+
+                    <img src="assets/img/PHAH.jpg">
+                </div>
+                <div class="container" *ngIf="currentUser; else loggedOut">
+                    <div class="container" *ngIf="user; else loggedOut" style="color:black">
+                        <h3 class="title"> <strong>{{user.username}}</strong></h3>
+                    </div>
+                    <p>
+                        <strong class="text-left">Email:</strong> {{ currentUser.email }}
+                    </p> 
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="container" *ngIf="isLoggedIn">
+                <div class="button-container">
+                    <a (click)="updateUtilisateur(currentUser.id)" class="btn btn-primary btn-round btn-lg" title="Modifier">
+                        <i class="fas fa-edit fa-lg"></i> Modifier
+                    </a>
+                    <a (click)="detailprofile(currentUser.id)" class="btn btn-primary btn-round btn-lg" rel="tooltip" title="garder les détail">
+                        <i class="fas fa-bars fa-lg"></i>Details
+                    </a>
+                </div>
+                           
+            </div>
+
+            <ng-template #loggedOut>
+                Please login.
+            </ng-template>
+         
+            <div class="typography-line" *ngIf="showCitoyenBoard ">
+                <blockquote style="margin-right: 40%;margin-bottom:500%;">
+                    <div class="blockquote blockquote-primary ">
+                        Vous pouvez créer une demandes administrative !!
+                        <div>
+                            <div class="navbar-nav ml-auto " routerLinkActive="active ">
+                                <a class="btn btn-round btn-lg " style="background-color: bisque; " (click)="envoyerdemande() ">
+                                    <i class="fas fa-file-medical "></i> Envoyer une demande
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </blockquote>
+            </div>
+        </div>
+    </div>
+    <footer class="footer " style="position: fixed; left: 0; bottom: 0; width: 100%; background-color: rgba(4, 10, 3, 0.521); text-align: center; ">
+        <div class="container ">
+            <div class="copyright ">
+                <div style="text-align: center; ">
+                    &copy; {{data | date: 'yyyy'}}, Designed by Freelancer
+                </div>
+            </div>
+        </div>
+    </footer>

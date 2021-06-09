@@ -1,0 +1,55 @@
+<div class="page-header" filter-color="orange">
+    <div class="page-header-image" style="background-image:url(assets/img/surface.jpg)"></div>
+    <br>
+    <div class="container">
+        <div class="col-md-d content-center">
+            <div class="card card-container">
+                <h5 style="color: black;">Modifier les coordonner d'Employé</h5>
+                <div [hidden]="submitted" style="margin: auto;">
+                    <form (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="name" class="text-left" style="color: black;">Nom :</label>
+                                    <input type="text" class="form-control" id="username" required [(ngModel)]="user.username" name="username">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="prenom" class="text-left" style="color: black;">Prénom :</label>
+                                    <input type="text" class="form-control" id="prenom" required [(ngModel)]="user.prenom" name="prenom">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="email" class="text-left" style="color: black;">Email :</label>
+                                    <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="email">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="paswword" class="text-left" style="color: black;">Password :</label>
+                                    <input type="text" class="form-control" id="password" required [(ngModel)]="user.password" name="password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="tel" class="text-left" style="color: black;">numero de télephone :</label>
+                                    <input type="text" class="form-control" id="tel" required [(ngModel)]="user.tel" name="tel">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" style="width: 350px; display: block;
+                        margin: auto;" class="btn btn-success btn-round btn-lg btn-block"> Enregistrer </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
