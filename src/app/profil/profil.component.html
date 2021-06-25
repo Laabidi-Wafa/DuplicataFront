@@ -1,36 +1,61 @@
 <div class="page-header" filter-color="orange">
-    <div class="page-header-image" style="background-image:url(assets/img/surface.jpg)"></div>
-    <div class="container">
-        <div class="col-md-4 content-center">
-            <div class="card card-login card-plain">
-                <div class="header header-primary text-center">
-                    <img class="profile-img-card" src="assets/img/profilavatar.png" alt="">
-                    <h3>
-                        Profile
-                        <strong>{{user.username}}</strong>
-                    </h3>
-                    <div class="container" *ngIf="currentUser; else loggedOut">
-                        <p>
-                            <strong class="text-left">Email:</strong> {{ currentUser.email }}
-                        </p>
-                        <button (click)="updateUtilisateur(currentUser.id)" class="btn btn-primary btn-round btn-lg" style="margin-left: 10px">Modifier</button>
-                        <button (click)="detailprofile(currentUser.id)" class="btn btn-primary btn-round btn-lg " style="margin-left: 10px">Détails</button>
-                       <nav>
-                           <app-detailprofil> </app-detailprofil>
-                       </nav>
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item" *ngIf="showCitoyenBoard" routerLinkActive="active">
-                                <button class="btn btn-primary btn-round btn-lg " routerLink="/profile/demande" *ngIf="isLoggedIn">
-                                  Envoyer une demande
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                    <ng-template #loggedOut>
-                        Please login.
-                    </ng-template>
-
-                </div>
-            </div>
+  <div
+    class="page-header-image"
+    style="background-image: url(assets/img/surface.jpg)"
+  ></div>
+  <div class="container">
+    <div class="col-md-4 content-center">
+      <div class="card card-login card-plain">
+        <div class="header header-primary text-center">
+          <img
+            class="profile-img-card"
+            src="assets/img/profilavatar.png"
+            alt=""
+          />
+          <h3>
+            Profil
+            <strong>{{ user.username }}</strong>
+          </h3>
+          <div class="container" *ngIf="currentUser; else loggedOut">
+            <p>
+              <strong class="text-left">Email:</strong> {{ currentUser.email }}
+            </p>
+            <button
+              (click)="updateUtilisateur(currentUser.id)"
+              class="btn btn-primary btn-round btn-lg"
+              style="margin-left: 10px"
+            >
+              Modifier
+            </button>
+            <button
+              (click)="detailprofile(currentUser.id)"
+              class="btn btn-primary btn-round btn-lg"
+              style="margin-left: 10px"
+            >
+              Détails
+            </button>
+            <nav>
+              <app-detailprofil> </app-detailprofil>
+            </nav>
+            <ul class="navbar-nav ml-auto">
+              <li
+                class="nav-item"
+                *ngIf="showCitoyenBoard"
+                routerLinkActive="active"
+              >
+                <button
+                  class="btn btn-primary btn-round btn-lg"
+                  routerLink="/profile/demande"
+                  *ngIf="isLoggedIn"
+                >
+                  Déposer une demande
+                </button>
+              </li>
+            </ul>
+          </div>
+          <ng-template #loggedOut> Prière de se connecter. </ng-template>
         </div>
+      </div>
     </div>
+  </div>
+</div>

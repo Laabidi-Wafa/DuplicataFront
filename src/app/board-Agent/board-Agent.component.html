@@ -1,43 +1,47 @@
 <div class="page-header" filter-color="orange">
-    <div class="page-header-image" style="background-image:url(assets/img/pistevoiture.jpg)"></div>
-    <div class="container">
-        <div class="col-md-4 content-center">
-            <div class="card card-login card-plain">
-                <div class="header header-primary text-center">
-                    <div class="nav-tabs-navigation">
-                        <div class="nav-tabs-wrapper">
-                            <ngb-tabset [justify]="'center'" class="text-center">
-                                <ngb-tab>
-                                    <ng-template ngbTabTitle>
-                                        <i class="now-ui-icons sport_trophy"></i> Consulter
-                                    </ng-template>
-                                    <ng-template ngbTabContent>
-                                        <div style="padding: 20px;">
-                                            <nav>
-                                                <div class="card">
-                                                    <ul>
-                                                    <div class="card-header"> 
-                                                      <h1 style="color:brown">la liste des dossiers medical</h1>
-                                                    </div>
-                                                    <li class="list-group-item">
-                                                    <div *ngFor="let file of fileUploads | async">
-                                                      <div class="panel-body">
-                                                        <a href="{{ file.url }}">{{ file.name }}</a>
-                                                      </div>
-                                                   
-                                                  </div>
-                                                  </li>
-                                                  </ul>
-                                                  </div> 
-                                            </nav>
-                                        </div>
-                                    </ng-template>
-                                </ngb-tab>
-                            </ngb-tabset>
+  <div
+    class="page-header-image"
+    style="background-image: url(assets/img/pistevoiture.jpg)"
+  ></div>
+  <div class="container">
+    <div class="col-md-4 content-center">
+      <div class="card card-login card-plain">
+        <div class="header header-primary text-center">
+          <div class="nav-tabs-navigation">
+            <div class="nav-tabs-wrapper">
+              <ngb-tabset [justify]="'center'" class="text-center">
+                <ngb-tab>
+                  <ng-template ngbTabTitle>
+                    <i class="now-ui-icons sport_trophy"></i> Consulter
+                  </ng-template>
+                  <ng-template ngbTabContent>
+                    <div style="padding: 20px">
+                      <nav>
+                        <div class="card">
+                          <ul>
+                            <div class="card-header">
+                              <h1 style="color: brown">
+                                la liste des dossiers médicaux
+                              </h1>
+                            </div>
+                            <li class="list-group-item">
+                              <div *ngFor="let file of fileUploads | async">
+                                <div class="panel-body">
+                                  <a href="{{ file.url }}">{{ file.name }}</a>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
                         </div>
+                      </nav>
                     </div>
-                </div>
+                  </ng-template>
+                </ngb-tab>
+              </ngb-tabset>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

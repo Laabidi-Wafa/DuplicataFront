@@ -1,88 +1,153 @@
 <div class="page-header" filter-color="orange">
-    <div class="page-header-image" style="background-image:url(assets/img/pistevoiture.jpg)"></div>
-    <div class="container">
-        <div class="col-md-4 content-center">
-            <div class="card card-container">
-                <div class="header header-primary text-center">
-                    <img id="profile-img" src="assets/img/docuemt.jpg" class="profile-img-card" />
-                    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-                        <div class="form-group">
-                            <label for="type" class="text-left" style="color: black;">Matricule :</label>
-                            <input type="text" class="form-control is-invalid" name="titre" [(ngModel)]="form.matricule" [ngClass]="{ 'is-invalid': f.submitted && titre.invalid }" required #titre="ngModel" />
-                            <div class="invalid-tooltip" *ngIf="f.submitted && titre.invalid">
-                                <div *ngIf="titre.errors.required">mettez le Matricule de votre demande</div>
-                            </div>
-                        </div>
-                        <div class="text-left">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-check">
-                                        <div class="nav-tabs-navigation">
-                                            <div class="nav-tabs-wrapper">
-                                                <ngb-tabset [justify]="'center'">
-                                                    <ngb-tab>
-                                                        <ng-template ngbTabTitle>
-                                                            <h3 style="color: black;" class="form-check-label" (click)="gocarte()" for="type">demande Carte grise
-                                                            </h3>
-                                                        </ng-template>
-                                                        <ng-template ngbTabContent>
-                                                            <div class="row mb-3">
-                                                                <div class="col">
-                                                                    <div class="form-group">
-                                                                        <label style="color: black;">
-                                                                date de perte
-                                                            </label>
-                                                                        <div class="datepicker-container">
-                                                                            <div class="form-group">
-                                                                                <input class="form-control" type="date" placeholder="06/07/2017" name="date_perte" [(ngModel)]="form.date_perte" required #date_perte="ngModel" data-color="orange">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                           </div>
-                                                        </ng-template>
-                                                    </ngb-tab>
-                                                    <ngb-tab>
-                                                        <ng-template ngbTabTitle>
-                                                            <h3 style="color: black;" class="form-check-label" for="type" (click)="gopermis()">demande permis
-                                                            </h3>
-                                                        </ng-template>
-                                                        <ng-template ngbTabContent>
-                                                            <label style="color: black;">
-                                                                    date de perte
-                                                                        </label>
-                                                            <div class="datepicker-container">
-                                                                <div class="form-group">
-                                                                    <input class="form-control" type="date" value="date_perte" placeholder="06/07/2020" name="date_perte" [(ngModel)]="form.date_perte" [(ngModel)]="model" required #date_perte="ngModel" data-color="orange">
-                                                                </div>
-                                                            </div>
-                                                            
-
-                                                        </ng-template>
-                                                    </ngb-tab>
-                                                </ngb-tabset>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br/>
-                        <br/> <br/> <br/>
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-round btn-lg btn-block">
-                    Envoyer</button>
-                        </div>
-                        <div class="alert alert-warning alert-dismissible fade show" style="position: fixed; top: 0; right: 0" *ngIf="f.submitted && isSendFailed">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button> le demande n'est pas envoyer<br />{{ errorMessage }}
-                        </div>
-                    </form>
-
-                    <div class="alert alert-success" *ngIf="isSuccessful">
-                        Votre demande est bien envoyer
-                    </div>
+  <div
+    class="page-header-image"
+    style="background-image: url(assets/img/pistevoiture.jpg)"
+  ></div>
+  <div class="container">
+    <div class="col-md-4 content-center">
+      <div class="card card-container">
+        <div class="header header-primary text-center">
+          <img
+            id="profile-img"
+            src="assets/img/docuemt.jpg"
+            class="profile-img-card"
+          />
+          <form
+            *ngIf="!isSuccessful"
+            name="form"
+            (ngSubmit)="f.form.valid && onSubmit()"
+            #f="ngForm"
+            novalidate
+          >
+            <div class="form-group">
+              <label for="type" class="text-left" style="color: black"
+                >Carte d'identité nationale :</label
+              >
+              <input
+                type="text"
+                class="form-control is-invalid"
+                name="titre"
+                [(ngModel)]="form.matricule"
+                [ngClass]="{ 'is-invalid': f.submitted && titre.invalid }"
+                required
+                #titre="ngModel"
+              />
+              <div class="invalid-tooltip" *ngIf="f.submitted && titre.invalid">
+                <div *ngIf="titre.errors.required">
+                  Mettez le cin de votre demande
                 </div>
-
+              </div>
             </div>
+            <div class="text-left">
+              <div class="row">
+                <div class="col">
+                  <div class="form-check">
+                    <div class="nav-tabs-navigation">
+                      <div class="nav-tabs-wrapper">
+                        <ngb-tabset [justify]="'center'">
+                          <ngb-tab>
+                            <ng-template ngbTabTitle>
+                              <h3
+                                style="color: black"
+                                class="form-check-label"
+                                (click)="gocarte()"
+                                for="type"
+                              >
+                                La demande duplicata de Carte grise
+                              </h3>
+                            </ng-template>
+                            <ng-template ngbTabContent>
+                              <div class="row mb-3">
+                                <div class="col">
+                                  <div class="form-group">
+                                    <label style="color: black">
+                                      La date de perte
+                                    </label>
+                                    <div class="datepicker-container">
+                                      <div class="form-group">
+                                        <input
+                                          class="form-control"
+                                          type="date"
+                                          placeholder="06/07/2017"
+                                          name="date_perte"
+                                          [(ngModel)]="form.date_perte"
+                                          required
+                                          #date_perte="ngModel"
+                                          data-color="orange"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </ng-template>
+                          </ngb-tab>
+                          <ngb-tab>
+                            <ng-template ngbTabTitle>
+                              <h3
+                                style="color: black"
+                                class="form-check-label"
+                                for="type"
+                                (click)="gopermis()"
+                              >
+                                Demande de duplicata de permis de conduire
+                              </h3>
+                            </ng-template>
+                            <ng-template ngbTabContent>
+                              <label style="color: black">
+                                date de perte
+                              </label>
+                              <div class="datepicker-container">
+                                <div class="form-group">
+                                  <input
+                                    class="form-control"
+                                    type="date"
+                                    value="date_perte"
+                                    placeholder="06/07/2020"
+                                    name="date_perte"
+                                    [(ngModel)]="form.date_perte"
+                                    [(ngModel)]="model"
+                                    required
+                                    #date_perte="ngModel"
+                                    data-color="orange"
+                                  />
+                                </div>
+                              </div>
+                            </ng-template>
+                          </ngb-tab>
+                        </ngb-tabset>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="form-group">
+              <button class="btn btn-primary btn-round btn-lg btn-block">
+                Déposer la demande
+              </button>
+            </div>
+            <div
+              class="alert alert-warning alert-dismissible fade show"
+              style="position: fixed; top: 0; right: 0"
+              *ngIf="f.submitted && isSendFailed"
+            >
+              <button type="button" class="close" data-dismiss="alert">
+                &times;
+              </button>
+              le demande n'été pas envoyée<br />{{ errorMessage }}
+            </div>
+          </form>
+
+          <div class="alert alert-success" *ngIf="isSuccessful">
+            Votre demande a été envoyée avec succés
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>

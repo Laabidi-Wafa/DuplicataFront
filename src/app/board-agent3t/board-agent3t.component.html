@@ -1,205 +1,399 @@
 <div class="page-header" filter-color="orange">
-    <div class="page-header-image" style="background-image:url(assets/img/pistevoiture.jpg)"></div>
-    <div class="container">
-        <div class="col-md-4 content-center">
-            <div class="card card-login card-plain">
-                <div class="header header-primary text-center">
-                    <div class="container">
-                        <div *ngIf="showNotif">
-                            <div *ngIf="shownotifpaix">
-                                <app-notification></app-notification>
-                            </div>
-                        </div>
-                        <div class="nav-tabs-navigation">
-                            <div class="nav-tabs-wrapper ">
-                                <ngb-tabset [justify]=" 'center' " class="text-center">
-                                    
-                                    <ngb-tab>
-                                        <ng-template ngbTabTitle>
-                                            <i class="now-ui-icons files_single-copy-04 "></i> Verification les Demandes
-                                        </ng-template>
-                                        <ng-template ngbTabContent>
-                                            <div class="nav-tabs-navigation ">
-                                                <div class="nav-tabs-wrapper ">
-                                                    <ngb-tabset [justify]=" 'center' " class="text-center ">
-                                                        <ngb-tab>
-                                                            <ng-template ngbTabTitle>
-                                                                <i class="fas fa-file-alt" (click)="goconge()"></i> Demande duplicata Carte grise
-                                                            </ng-template>
-                                                            <ng-template ngbTabContent>
-                                                                <h5>
-                                                                    <div class="panel-heading ">
-                                                                        <h2 style="color:green ; ">les Demandes Envoyés </h2>
-                                                                    </div>
-                                                                    <div class="panel-body ">
-                                                                        <table class="table table-striped ">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th style="color:green ; ">id</th>
-                                                                                    <th style="color:green ; ">Matricule</th>
-                                                                                    <th style="color:green ; ">date perte</th>
-                                                                                    <th style="color:green ; ">etat</th>
-                                                                                    <th style="color:green ; ">Action </th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody *ngFor="let demande of demande | async |slice:(page-1) * pagesize: (page-1)*pagesize+pagesize ">
-                                                                                <tr *ngIf="demande.etat==='NonValider'">
-                                                                                    <td style="color:green ; "> {{demande.id}}</td>
-                                                                                    <td style="color:black ; "> {{ demande.matricule}}</td>
-                                                                                    <td style="color:black ; "> {{ demande.date_perte |date : "dd.MM.y " }}</td>
-                                                                                    <td style="color:black ; "> {{ demande.etat }}</td>
-                                                                                    <td style="color:black; ">
-                                                                                        <button class="btn btn-primary btn-round education_glasses" (click)="Validation(demande.id)">lire</button>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-
-                                                                        </table>
-                                                                        <ngb-pagination [pageSize]="4" [collectionSize]="70" [(page)]="page" aria-label=" " style="background-color: blue;">
-                                                                        </ngb-pagination>
-                                                                    </div>
-                                                                </h5>
-                                                            </ng-template>
-                                                        </ngb-tab>
-                                                        <ngb-tab>
-                                                            <ng-template ngbTabTitle>
-                                                                <i class="fas fa-file-contract" (click)="gofiche()"></i>Demande duplicata permis
-                                                            </ng-template>
-                                                            <ng-template ngbTabContent>
-                                                                <h5>
-                                                                    <div class="panel panel-primary ">
-                                                                        <div class="panel-heading ">
-                                                                            <h2 style="color:green ; ">les Demandes Envoyés </h2>
-                                                                        </div>
-                                                                        <div class="panel-body ">
-                                                                            <table class="table table-striped ">
-                                                                                <thead>
-                                                                                    <tr>
-                                                                                        <th style="color:green ; ">id</th>
-                                                                                        <th style="color:green ; ">Matricule</th>
-                                                                                        <th style="color:green ; ">date de perte</th>
-                                                                                        <th style="color:green ; ">etat</th>
-                                                                                        <th style="color:green ; ">Action</th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody *ngFor="let demandeFiche of demandeFiche | async|slice:(page-1) * pagesize: (page-1)*pagesize+pagesize ">
-                                                                                    <tr *ngIf="demandeFiche.etat==='NonValider'">
-                                                                                        <td style="color:green ; "> {{ demandeFiche.id}}</td>
-                                                                                        <td style="color:black ; "> {{ demandeFiche.matricule}}</td>
-                                                                                        <td style="color:black ; "> {{ demandeFiche.date_perte |date : "dd.MM.y " }}</td>
-                                                                                        <td style="color:black; "> {{ demandeFiche.etat}}</td>
-                                                                                        <td style="color:black; ">
-                                                                                            <button class="btn btn-primary btn-round education_glasses" (click)="valider(demandeFiche.id)">lire</button>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                            <ngb-pagination [pageSize]=" 6 " [collectionSize]="70 " [(page)]="page " aria-label=" " style="background-color: blue; ">
-                                                                            </ngb-pagination>
-                                                                        </div>
-                                                                    </div>
-                                                                </h5>
-                                                            </ng-template>
-                                                        </ngb-tab>
-                                                    </ngb-tabset>
-                                                </div>
-                                            </div>
-                                        </ng-template>
-                                    </ngb-tab>
-                                </ngb-tabset>
-                            </div>
-                        </div>
-                        <ng-template #content let-modal>
-                            <div class="modal-header ">
-                                <h4 class="modal-title " id="modal-basic-title ">Demande Administratives</h4>
-                                <button type="button " class="close " aria-label="Close " (click)="modal.dismiss( 'Cross click') ">
-                                <span aria-hidden="true ">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body ">
-                                <form>
-                                    <div class="form-group ">
-                                        <label for="dateOfBirth "></label>
-                                        <div class="panel-body ">
-                                            <div *ngIf="demandev ">
-                                                <div>
-                                                    <label class="text-left " style="color:green ; "><b>Titre: </b></label>
-                                                    <h3 style="color:black ; "> {{ demandev.titre}} </h3>
-
-                                                </div>
-                                                <div>
-                                                    <label class="text-left " style="color:green ; "><b>Date debut: </b></label>
-                                                    <h3 style="color:black ; "> {{ demandev.date_debut |date: "yyy-mm-d "}} </h3>
-
-                                                </div>
-                                                <div>
-                                                    <label class="text-left " style="color:green ; "><b>Date fin : </b></label>
-                                                    <h3 style="color:black ; "> {{ demandev.date_fin |date: "yyy-mm-d "}} </h3>
-                                                </div>
-                                                <div>
-                                                    <label class="text-left " style="color:green ; "><b>Cause: </b></label>
-                                                    <h3 style="color:black ; ">{{ demandev.cause}}</h3>
-
-                                                </div>
-                                                <div>
-                                                    <label class="text-left " style="color:green ; "><b> etat: </b></label>
-                                                    <h3 style="color:black ; "> {{ demandev.etat}}</h3>
-
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <br>
-                                            <button (click)="valider() " class="btn btn-primary btn-round btn-lg btn-block ui-1_check " style="width: 350px; display: block; margin: auto; "> je veux valider votre demande</button><br>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer ">
-                                <button type="button " class="btn btn-outline-dark " (click)="modal.close( 'Save click') ">Close</button>
-                            </div>
-                        </ng-template>
-                        <ng-template #content let-modal>
-                            <div class="modal-header " *ngIf="popup2 ">
-                                <h4 class="modal-title " id="modal-basic-title ">Demande Administratives</h4>
-                                <button type="button " class="close " aria-label="Close " (click)="modal.dismiss( 'Cross click') ">
-                                <span aria-hidden="true ">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body ">
-                                <form>
-                                    <div class="form-group ">
-                                        <label for="dateOfBirth "></label>
-                                        <div class="panel-body ">
-                                            <div *ngIf="demf ">
-                                                <div>
-                                                    <label class="text-left " style="color:green ; "><b>Titre: </b></label>
-                                                    <h3 style="color:black ; "> {{demf.titre}} </h3>
-
-                                                </div>
-                                                <div>
-                                                    <label class="text-left " style="color:green ; "><b>Date fiche de paix : </b></label>
-                                                    <h3 style="color:black ; "> {{demf.date_fiche |date: "yyy-mm-d "}} </h3>
-                                                </div>
-                                                <div>
-                                                    <label class="text-left " style="color:green ; "><b> etat: </b></label>
-                                                    <h3 style="color:black ; "> {{demf.etat}}</h3>
-
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <br>
-                                            <button (click)="comfirmer() " class="btn btn-primary btn-round btn-lg btn-block ui-1_check " style="width: 350px; display: block; margin: auto; "> je veux valider votre demande</button><br>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer ">
-                                <button type="button " class="btn btn-outline-dark " (click)="modal.close( 'Save click') ">Close</button>
-                            </div>
-                        </ng-template>
-                    </div>
-                </div>
+  <div
+    class="page-header-image"
+    style="background-image: url(assets/img/pistevoiture.jpg)"
+  ></div>
+  <div class="container">
+    <div class="col-md-4 content-center">
+      <div class="card card-login card-plain">
+        <div class="header header-primary text-center">
+          <div class="container">
+            <div *ngIf="showNotif">
+              <div *ngIf="shownotifpaix">
+                <app-notification></app-notification>
+              </div>
             </div>
+            <div class="nav-tabs-navigation">
+              <div class="nav-tabs-wrapper">
+                <ngb-tabset [justify]="'center'" class="text-center">
+                  <ngb-tab>
+                    <ng-template ngbTabTitle>
+                      <i class="now-ui-icons files_single-copy-04"></i>
+                      Verification les Demandes
+                    </ng-template>
+                    <ng-template ngbTabContent>
+                      <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                          <ngb-tabset [justify]="'center'" class="text-center">
+                            <ngb-tab>
+                              <ng-template ngbTabTitle>
+                                <i
+                                  class="fas fa-file-alt"
+                                  (click)="goconge()"
+                                ></i>
+                                Demande duplicata Carte grise
+                              </ng-template>
+                              <ng-template ngbTabContent>
+                                <h5>
+                                  <div class="panel-heading">
+                                    <h2 style="color: green">
+                                      les Demandes Envoyées
+                                    </h2>
+                                  </div>
+                                  <div class="panel-body">
+                                    <table class="table table-striped">
+                                      <thead>
+                                        <tr>
+                                          <th style="color: green">l'id</th>
+                                          <th style="color: green">
+                                            Le nom du citoyen
+                                          </th>
+
+                                          <th style="color: green">
+                                            carte d'identité nationale
+                                          </th>
+                                          <th style="color: green">
+                                            date perte
+                                          </th>
+                                          <th style="color: green">etat</th>
+                                          <th style="color: green">Action</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody
+                                        *ngFor="
+                                          let demande of demande
+                                            | async
+                                            | slice
+                                              : (page - 1) * pagesize
+                                              : (page - 1) * pagesize + pagesize
+                                        "
+                                      >
+                                        <tr
+                                          *ngIf="demande.etat === 'NonValider'"
+                                        >
+                                          <td style="color: green">
+                                            {{ demande.id }}
+                                          </td>
+                                          <td style="color: green">
+                                            {{ namecitoyen }}
+                                          </td>
+
+                                          <td style="color: black">
+                                            {{ demande.matricule }}
+                                          </td>
+                                          <td style="color: black">
+                                            {{
+                                              demande.date_perte
+                                                | date: "dd.MM.y "
+                                            }}
+                                          </td>
+                                          <td style="color: black">
+                                            {{ demande.etat }}
+                                          </td>
+                                          <td style="color: black">
+                                            <button
+                                              class="
+                                                btn btn-primary btn-round
+                                                education_glasses
+                                              "
+                                              (click)="Validation(demande.id)"
+                                            >
+                                              Détails
+                                            </button>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <ngb-pagination
+                                      [pageSize]="4"
+                                      [collectionSize]="70"
+                                      [(page)]="page"
+                                      aria-label=" "
+                                      style="background-color: blue"
+                                    >
+                                    </ngb-pagination>
+                                  </div>
+                                </h5>
+                              </ng-template>
+                            </ngb-tab>
+
+                            <ngb-tab>
+                              <ng-template ngbTabTitle>
+                                <i
+                                  class="fas fa-file-contract"
+                                  (click)="gofiche()"
+                                ></i
+                                >Demande duplicata permis de conduire
+                              </ng-template>
+                              <ng-template ngbTabContent>
+                                <h5>
+                                  <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                      <h2 style="color: green">
+                                        les Demandes Envoyées
+                                      </h2>
+                                    </div>
+                                    <div class="panel-body">
+                                      <table class="table table-striped">
+                                        <thead>
+                                          <tr>
+                                            <th style="color: green">id</th>
+                                            <th style="color: green">
+                                              Le nom du citoyen
+                                            </th>
+                                            <th style="color: green">
+                                              Carte d'identité nationale
+                                            </th>
+                                            <th style="color: green">
+                                              date de perte
+                                            </th>
+                                            <th style="color: green">etat</th>
+                                            <th style="color: green">Action</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody
+                                          *ngFor="
+                                            let demandeFiche of demandeFiche
+                                              | async
+                                              | slice
+                                                : (page - 1) * pagesize
+                                                : (page - 1) * pagesize +
+                                                    pagesize
+                                          "
+                                        >
+                                          <tr
+                                            *ngIf="
+                                              demandeFiche.etat === 'NonValider'
+                                            "
+                                          >
+                                            <td style="color: green">
+                                              {{ demandeFiche.id }}
+                                            </td>
+                                            <td style="color: green">
+                                              {{ namecitoyen }}
+                                            </td>
+                                            <td style="color: black">
+                                              {{ demandeFiche.matricule }}
+                                            </td>
+                                            <td style="color: black">
+                                              {{
+                                                demandeFiche.date_perte
+                                                  | date: "dd.MM.y "
+                                              }}
+                                            </td>
+                                            <td style="color: black">
+                                              {{ demandeFiche.etat }}
+                                            </td>
+                                            <td style="color: black">
+                                              <button
+                                                class="
+                                                  btn btn-primary btn-round
+                                                  education_glasses
+                                                "
+                                                (click)="
+                                                  valider(demandeFiche.id)
+                                                "
+                                              >
+                                                Détails
+                                              </button>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                      <ngb-pagination
+                                        [pageSize]="6"
+                                        [collectionSize]="70"
+                                        [(page)]="page"
+                                        aria-label=" "
+                                        style="background-color: blue"
+                                      >
+                                      </ngb-pagination>
+                                    </div>
+                                  </div>
+                                </h5>
+                              </ng-template>
+                            </ngb-tab>
+                          </ngb-tabset>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </ngb-tab>
+                </ngb-tabset>
+              </div>
+            </div>
+
+            <ng-template #content let-modal>
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title ">
+                  Les demandes de duplicata
+                </h4>
+                <button
+                  type="button "
+                  class="close"
+                  aria-label="Close "
+                  (click)="modal.dismiss('Cross click')"
+                >
+                  <span aria-hidden="true ">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="dateOfBirth "></label>
+                    <div class="panel-body">
+                      <div *ngIf="demandev">
+                        <div>
+                          <label class="text-left" style="color: green"
+                            ><b>Titre: </b></label
+                          >
+                          <h3 style="color: black">{{ demandev.titre }}</h3>
+                        </div>
+                        <div>
+                          <label class="text-left" style="color: green"
+                            ><b>Date debut: </b></label
+                          >
+                          <h3 style="color: black">
+                            {{ demandev.date_debut | date: "yyy-mm-d " }}
+                          </h3>
+                        </div>
+                        <div>
+                          <label class="text-left" style="color: green"
+                            ><b>Date fin : </b></label
+                          >
+                          <h3 style="color: black">
+                            {{ demandev.date_fin | date: "yyy-mm-d " }}
+                          </h3>
+                        </div>
+                        <div>
+                          <label class="text-left" style="color: green"
+                            ><b>Cause: </b></label
+                          >
+                          <h3 style="color: black">{{ demandev.cause }}</h3>
+                        </div>
+                        <div>
+                          <label class="text-left" style="color: green"
+                            ><b> etat: </b></label
+                          >
+                          <h3 style="color: black">{{ demandev.etat }}</h3>
+                        </div>
+                      </div>
+                      <br />
+                      <br />
+                      <button
+                        (click)="valider()"
+                        class="
+                          btn btn-primary btn-round btn-lg btn-block
+                          ui-1_check
+                        "
+                        style="width: 350px; display: block; margin: auto"
+                      >
+                        valider la demande</button
+                      ><br />
+                      <button
+                        (click)="valider()"
+                        class="
+                          btn btn-primary btn-round btn-lg btn-block
+                          ui-1_check
+                        "
+                        style="width: 350px; display: block; margin: auto"
+                      >
+                        refuser la demande</button
+                      ><br />
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button "
+                  class="btn btn-outline-dark"
+                  (click)="modal.close('Save click')"
+                >
+                  Close
+                </button>
+              </div>
+            </ng-template>
+
+            <ng-template #content let-modal>
+              <div class="modal-header" *ngIf="popup2">
+                <h4 class="modal-title" id="modal-basic-title ">
+                  Les demandes de duplicata
+                </h4>
+                <button
+                  type="button "
+                  class="close"
+                  aria-label="Close "
+                  (click)="modal.dismiss('Cross click')"
+                >
+                  <span aria-hidden="true ">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="dateOfBirth "></label>
+                    <div class="panel-body">
+                      <div *ngIf="demf">
+                        <div>
+                          <label class="text-left" style="color: green"
+                            ><b>Titre: </b></label
+                          >
+                          <h3 style="color: black">{{ demf.titre }}</h3>
+                        </div>
+                        <div>
+                          <label class="text-left" style="color: green"
+                            ><b>Date fiche de paix : </b></label
+                          >
+                          <h3 style="color: black">
+                            {{ demf.date_fiche | date: "yyy-mm-d " }}
+                          </h3>
+                        </div>
+                        <div>
+                          <label class="text-left" style="color: green"
+                            ><b> etat: </b></label
+                          >
+                          <h3 style="color: black">{{ demf.etat }}</h3>
+                        </div>
+                      </div>
+                      <br />
+                      <br />
+                      <button
+                        (click)="comfirmer()"
+                        class="
+                          btn btn-primary btn-round btn-lg btn-block
+                          ui-1_check
+                        "
+                        style="width: 350px; display: block; margin: auto"
+                      >
+                        Valider la demande
+                      </button>
+                      <button
+                        (click)="comfirmer()"
+                        class="
+                          btn btn-primary btn-round btn-lg btn-block
+                          ui-1_check
+                        "
+                        style="width: 350px; display: block; margin: auto"
+                      >
+                        Refuser la demande</button
+                      ><br />
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button "
+                  class="btn btn-outline-dark"
+                  (click)="modal.close('Save click')"
+                >
+                  Close
+                </button>
+              </div>
+            </ng-template>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
